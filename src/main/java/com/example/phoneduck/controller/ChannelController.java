@@ -2,12 +2,10 @@ package com.example.phoneduck.controller;
 
 import com.example.phoneduck.model.Channel;
 import com.example.phoneduck.service.ChannelService;
+import com.example.phoneduck.wesocket.ChannelSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -17,9 +15,10 @@ public class ChannelController {
     @Autowired
     private ChannelService channelService;
 
+    @Autowired
+    private ChannelSocketHandler channelSocketHandler;
+
     private List<Channel> channelList;
-
-
 
     @GetMapping("channels")
     public ResponseEntity<List<Channel>> getChannel(){
@@ -30,8 +29,14 @@ public class ChannelController {
     @PostMapping("channels")
     public  ResponseEntity<List<Channel>> createChannel(@RequestBody Channel channel){
         channelService.save(channel);
-
-        List<Channel> channelList = channelService.getAll();
+        channelSocketHandler.broadcast(channel.getTitle() + " channel was created");
         return ResponseEntity.status(201).body(channelList);
+    }
+
+    @DeleteMapping("channels/{id}")
+    public ResponseEntity<List<Channel>> deleteChannel(@PathVariable long id){ //, @RequestBody Channel channel
+        channelService.delete(id);
+        //channelSocketHandler.broadcast(channel.getTitle() + " channel was deleted");
+        return getChannel();
     }
 }

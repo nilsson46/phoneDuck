@@ -13,4 +13,12 @@ public class PhoneDuckApplication {
 		SpringApplication.run(PhoneDuckApplication.class, args);
 	}
 
+	@Bean
+
+	public CommandLineRunner run(JpaChannelRepository jpaChannelRepository){
+		return args -> {
+			System.out.println("--------- Up and running :D ----------");
+		};
+	}
+
 }

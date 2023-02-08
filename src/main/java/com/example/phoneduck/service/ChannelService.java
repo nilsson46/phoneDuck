@@ -18,4 +18,6 @@ public class ChannelService {
     public Channel save(Channel channel){
         return jpaChannelRepository.save(channel);
     }
+
+    public void delete(long channelId){jpaChannelRepository.deleteById(channelId);}
 }
