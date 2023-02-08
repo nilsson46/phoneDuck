@@ -14,6 +14,7 @@ import lombok.Setter;
 @Getter@Setter
 @Entity
 public class Channel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
