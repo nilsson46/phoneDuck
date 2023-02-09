@@ -8,10 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.swing.*;
 import java.util.List;
 
 @RestController
 public class ChannelController {
+
     @Autowired
     private ChannelService channelService;
 
@@ -36,7 +38,7 @@ public class ChannelController {
     @DeleteMapping("channels/{id}")
     public ResponseEntity<List<Channel>> deleteChannel(@PathVariable long id){ //, @RequestBody Channel channel
         channelService.delete(id);
-        //channelSocketHandler.broadcast(channel.getTitle() + " channel was deleted");
+       // channelSocketHandler.broadcast(channel.getTitle() + " channel was deleted");
         return getChannel();
     }
 }
