@@ -37,11 +37,9 @@ public class ChatSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        for (WebSocketSession webSocketSession : sessions) {
-            String room = Objects.requireNonNull(webSocketSession.getHandshakeHeaders().getFirst("room"));
-            broadcast(room, message.getPayload());
-        }
+    protected void handleTextMessage(WebSocketSession webSocketSession, TextMessage message) throws Exception {
+        String room = Objects.requireNonNull(webSocketSession.getHandshakeHeaders().getFirst("room"));
+        broadcast(room, message.getPayload());
     }
 
 
