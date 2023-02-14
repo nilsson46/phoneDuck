@@ -36,9 +36,9 @@ public class ChannelController {
     }
 
     @DeleteMapping("channels/{id}")
-    public ResponseEntity<List<Channel>> deleteChannel(@PathVariable long id){ //, @RequestBody Channel channel
+    public ResponseEntity<List<Channel>> deleteChannel(@PathVariable long id) {
         channelService.delete(id);
-       // channelSocketHandler.broadcast(channel.getTitle() + " channel was deleted");
+        channelSocketHandler.broadcast(channelService.getAll().toString());
         return getChannel();
     }
 }

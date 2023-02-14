@@ -8,7 +8,8 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter@Setter
+@Getter
+@Setter
 @Entity
 @ToString
 public class Channel {
@@ -18,4 +19,6 @@ public class Channel {
     private long id;
 
     private String title;
+
+
 }

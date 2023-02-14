@@ -13,11 +13,16 @@ public class ChannelService {
 
     @Autowired
     private JpaChannelRepository jpaChannelRepository;
-    public List<Channel> getAll() { return jpaChannelRepository.findAll();}
 
-    public Channel save(Channel channel){
+    public List<Channel> getAll() {
+        return jpaChannelRepository.findAll();
+    }
+
+    public Channel save(Channel channel) {
         return jpaChannelRepository.save(channel);
     }
 
-    public void delete(long channelId){jpaChannelRepository.deleteById(channelId);}
+    public void delete(long channelId) {
+        jpaChannelRepository.deleteById(channelId);
+    }
 }
